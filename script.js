@@ -16,6 +16,25 @@ myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
 console.log(myLibrary);
+
+const display = document.getElementById('book-display');
+for(let i = 0; i < 9; i++){
+    const p = document.createElement('p');
+    p.id = i;
+    p.style.cssText = "margin: 0;"
+    display.appendChild(p);
+}
+for(let i = 0; i < myLibrary.length; i++){
+    const p = document.getElementById('' + i + '');
+   p.innerText += myLibrary[i].title
+   p.innerText += myLibrary[i].author
+   p.innerText += myLibrary[i].pages
+   p.innerText += myLibrary[i].read
+}
+myLibrary.forEach(function(book){
+console.log(book);
+})
+
 function addBookToLibrary(){
 
 }
