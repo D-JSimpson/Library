@@ -32,6 +32,16 @@ myLibrary.forEach(function(book){
 console.log(book);
 })
 
+let displayChild = Array.from(display.children);
+displayChild.forEach(function(div){
+    if(div.children.length == 0){
+        const button = document.createElement('button');
+        button.innerText = 'NEW BOOK';
+        div.appendChild(button);
+    }
+});
+
+
 function addBookToLibrary(){
 
 }
