@@ -38,17 +38,29 @@ displayChild.forEach(function(div){
         const button = document.createElement('button');
         button.innerText = 'NEW BOOK';
         button.id = div.id + 'b'; 
+        button.addEventListener('click', function(){addBookToLibrary(button.id);});
         div.appendChild(button);
         div.classList.toggle('button-center')
     } else { 
         const button = document.createElement('button');
         button.innerText = 'REMOVE BOOK';
         button.id = div.id + 'r'; 
+       // button.addEventListener('click', function(){addBookToLibrary(button.id);})
         div.appendChild(button);
         }
 });
 
-
-function addBookToLibrary(){
-
+function addBookToLibrary(spot){
+let title = window.prompt("Enter Title: ");
+let author = window.prompt("Enter author: ");
+let pages = window.prompt("Enter Page numbers: ");
+while(pages % 1 !== 0){
+    alert('please enter a valid number');
+    pages = window.prompt("Enter Page numbers: ");
+}
+let read = window.prompt("Have you read it?");
+while(read !== 'read' && read !== 'not read'){
+    alert('please enter read or not read');
+    read = window.prompt("Have you read it?");
+}
 }
