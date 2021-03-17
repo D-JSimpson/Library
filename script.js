@@ -21,7 +21,7 @@ const display = document.getElementById('book-display');
 for(let i = 0; i < 9; i++){
     const div = document.createElement('div');
     div.id = i;
-    div.style.cssText = "margin: 0; text-align: center";
+    div.style.cssText = "margin: 0; text-align: center; border: 1px solid burlywood; border-radius: 10px";
     display.appendChild(div);
 }
 for(let i = 0; i < myLibrary.length; i++){
@@ -37,8 +37,15 @@ displayChild.forEach(function(div){
     if(div.children.length == 0){
         const button = document.createElement('button');
         button.innerText = 'NEW BOOK';
+        button.id = div.id + 'b'; 
         div.appendChild(button);
-    }
+        div.classList.toggle('button-center')
+    } else { 
+        const button = document.createElement('button');
+        button.innerText = 'REMOVE BOOK';
+        button.id = div.id + 'r'; 
+        div.appendChild(button);
+        }
 });
 
 
