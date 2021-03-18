@@ -26,41 +26,62 @@ for(let i = 0; i < 9; i++){
 }
 for(let i = 0; i < myLibrary.length; i++){
     const div = document.getElementById('' + i + '');
+    if(myLibrary[i] !== ""){
     div.innerHTML = '<p>'+ myLibrary[i].title +'</p>' + '<p>' + myLibrary[i].author + '</p>' + '<p>' + myLibrary[i].pages + '</p>' + '<p>' + myLibrary[i].read + '</p>';
+    }
 }
 myLibrary.forEach(function(book){
 console.log(book);
 })
 
-let displayChild = Array.from(display.children);
-displayChild.forEach(function(div){
-    if(div.children.length == 0){
-        const button = document.createElement('button');
-        button.innerText = 'NEW BOOK';
-        button.id = div.id + 'b'; 
-        button.addEventListener('click', function(){addBookToLibrary(button.id);});
-        div.appendChild(button);
-        div.classList.toggle('button-center')
-    } else { 
-        const button = document.createElement('button');
+function setRemoveButton(div){
+    const button = document.createElement('button');
         button.innerText = 'REMOVE BOOK';
         button.id = div.id + 'r'; 
-       // button.addEventListener('click', function(){addBookToLibrary(button.id);})
         div.appendChild(button);
+}
+
+function setNewBookButton(div){
+    const button = document.createElement('button');
+        button.innerText = 'NEW BOOK';
+        button.id = div.id + 'b'; 
+        button.addEventListener('click', function(){addBookToLibrary(button.id, div);});
+        div.appendChild(button);
+        div.classList.toggle('button-center');
+}
+
+let displayChild = Array.from(display.children);
+displayChild.forEach(function(div){ 
+    if(div.children.length == 0){
+        setNewBookButton(div);
+    } else { 
+        setRemoveButton(div);
         }
 });
 
-function addBookToLibrary(spot){
-let title = window.prompt("Enter Title: ");
-let author = window.prompt("Enter author: ");
-let pages = window.prompt("Enter Page numbers: ");
-while(pages % 1 !== 0){
-    alert('please enter a valid number');
-    pages = window.prompt("Enter Page numbers: ");
+function makeBook(i){
+    const div = document.getElementById('' + i + '');
+    div.classList.toggle('button-center');
+    div.innerHTML = '<p>'+ myLibrary[i].title +'</p>' + '<p>' + myLibrary[i].author + '</p>' + '<p>' + myLibrary[i].pages + '</p>' + '<p>' + myLibrary[i].read + '</p>';
 }
-let read = window.prompt("Have you read it?");
-while(read !== 'read' && read !== 'not read'){
-    alert('please enter read or not read');
-    read = window.prompt("Have you read it?");
-}
+
+function addBookToLibrary(id, div){
+    console.log(div);
+    let title = window.prompt("Enter Title: ");
+    let author = window.prompt("Enter author: ");
+    let pages = window.prompt("Enter page numbers: ");
+        while(pages % 1 !== 0 && pages !== 'null'){
+            alert('please enter a valid number');
+            pages = window.prompt("Enter page numbers: ");
+        }
+    let read = window.prompt("Have you read it?");
+        while(read !== 'read' && read !== 'not read'){
+            alert('please enter read or not read');
+            read = window.prompt("Have you read it?");
+        }
+    let spot = id.substring(0,1);
+    let book = new Book(title, author, pages, read);
+    myLibrary[spot] = book;
+    makeBook(spot);
+    setRemoveButton(div);
 }
