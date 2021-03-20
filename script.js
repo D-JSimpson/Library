@@ -8,6 +8,14 @@ function Book(title, author, pages, read){
     this.info = function(){
       return title + " by " + author + ', ' + pages + ' pages, ' + read; 
     }
+    this.toggleRead = function(){
+        if(read == 'read'){
+            this.read = 'not read';
+        }
+        else{
+            this.read = 'read';
+        }
+    }
 }
 const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
 const book2 = new Book('The Hobbit 2', 'J.R.R. Tolkien', 395, 'not read');
