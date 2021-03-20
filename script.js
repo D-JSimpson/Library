@@ -69,14 +69,24 @@ function makeBook(i){
 function addBookToLibrary(id, div){
     console.log(div);
     let title = window.prompt("Enter Title: ");
+    while(title == null || title == ''){
+        alert('please enter a value');
+        title = window.prompt("Enter Title: ");
+        console.log(title);
+    }
+    console.log(title);
     let author = window.prompt("Enter author: ");
+    while(author == null || author == ''){
+        alert('please enter a value');
+        author = window.prompt("Enter author: ");
+    }
     let pages = window.prompt("Enter page numbers: ");
-    let pMod = pages % 1;
-        while(pages % 1 !== 0){
+        while(pages % 1 !== 0 || pages == null || pages == ''){
             alert('please enter a valid number');
             pages = window.prompt("Enter page numbers: ");
-            pMod = pages % 1;
+            console.log(pages);
         }
+        console.log(pages);
     let read = window.prompt("Have you read it?");
         while(read !== 'read' && read !== 'not read'){
             alert('please enter read or not read');
