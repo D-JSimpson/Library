@@ -15,7 +15,6 @@ const book3 = new Book('The Hobbit 3', 'J.R.R. Tolkien', 495, 'not read');
 myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
-console.log(myLibrary);
 
 const display = document.getElementById('book-display');
 for(let i = 0; i < 9; i++){
@@ -30,9 +29,7 @@ for(let i = 0; i < myLibrary.length; i++){
     div.innerHTML = '<p>'+ myLibrary[i].title +'</p>' + '<p>' + myLibrary[i].author + '</p>' + '<p>' + myLibrary[i].pages + '</p>' + '<p>' + myLibrary[i].read + '</p>';
     }
 }
-myLibrary.forEach(function(book){
-console.log(book);
-})
+
 
 function setRemoveButton(div){
     const button = document.createElement('button');
@@ -67,14 +64,11 @@ function makeBook(i){
 }
 
 function addBookToLibrary(id, div){
-    console.log(div);
     let title = window.prompt("Enter Title: ");
     while(title == null || title == ''){
         alert('please enter a value');
         title = window.prompt("Enter Title: ");
-        console.log(title);
     }
-    console.log(title);
     let author = window.prompt("Enter author: ");
     while(author == null || author == ''){
         alert('please enter a value');
@@ -84,9 +78,7 @@ function addBookToLibrary(id, div){
         while(pages % 1 !== 0 || pages == null || pages == ''){
             alert('please enter a valid number');
             pages = window.prompt("Enter page numbers: ");
-            console.log(pages);
         }
-        console.log(pages);
     let read = window.prompt("Have you read it?");
         while(read !== 'read' && read !== 'not read'){
             alert('please enter read or not read');
