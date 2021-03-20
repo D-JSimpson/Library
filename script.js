@@ -9,7 +9,7 @@ function Book(title, author, pages, read){
       return title + " by " + author + ', ' + pages + ' pages, ' + read; 
     }
     this.toggleRead = function(){
-        if(read == 'read'){
+        if(this.read == 'read'){
             this.read = 'not read';
         }
         else{
@@ -34,7 +34,7 @@ for(let i = 0; i < 9; i++){
 for(let i = 0; i < myLibrary.length; i++){
     const div = document.getElementById('' + i + '');
     if(myLibrary[i] !== ""){
-    div.innerHTML = '<p>'+ myLibrary[i].title +'</p>' + '<p>' + myLibrary[i].author + '</p>' + '<p>' + myLibrary[i].pages + '</p>' + '<p>' + myLibrary[i].read + '</p>';
+    div.innerHTML = '<p>'+ myLibrary[i].title +'</p>' + '<p>' + myLibrary[i].author + '</p>' + '<p>' + myLibrary[i].pages + '</p>' + '<p>' + myLibrary[i].read + '<button id = "read-button" style = "margin-left: 10px" onclick = updateRead(this.parentElement.parentElement)>READ</button>' + '</p>';
     }
 }
 
@@ -68,7 +68,7 @@ displayChild.forEach(function(div){
 function makeBook(i){
     const div = document.getElementById('' + i + '');
     div.classList.toggle('button-center');
-    div.innerHTML = '<p>'+ myLibrary[i].title +'</p>' + '<p>' + myLibrary[i].author + '</p>' + '<p>' + myLibrary[i].pages + '</p>' + '<p>' + myLibrary[i].read + '</p>';
+    div.innerHTML = '<p>'+ myLibrary[div.id].title +'</p>' + '<p>' + myLibrary[div.id].author + '</p>' + '<p>' + myLibrary[div.id].pages + '</p>' + '<p>' + myLibrary[div.id].read + '<button id = "read-button" style = "margin-left: 10px" onclick = updateRead(this.parentElement.parentElement)>READ</button>' + '</p>';
 }
 
 function addBookToLibrary(id, div){
@@ -103,4 +103,10 @@ function removeBookFromLibrary(div){
 div.innerHTML = '';
 setNewBookButton(div);
 myLibrary[div.id] = '';
+}
+
+function updateRead(div){
+myLibrary[div.id].toggleRead();
+div.innerHTML = '<p>'+ myLibrary[div.id].title +'</p>' + '<p>' + myLibrary[div.id].author + '</p>' + '<p>' + myLibrary[div.id].pages + '</p>' + '<p>' + myLibrary[div.id].read + '<button id = "read-button" style = "margin-left: 10px" onclick = updateRead(this.parentElement.parentElement)>READ</button>' + '</p>';
+setRemoveButton(div);
 }
