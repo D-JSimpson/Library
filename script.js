@@ -38,6 +38,7 @@ function setRemoveButton(div){
     const button = document.createElement('button');
         button.innerText = 'REMOVE BOOK';
         button.id = div.id + 'r'; 
+        button.addEventListener('click', function(){removeBookFromLibrary(div)});
         div.appendChild(button);
 }
 
@@ -70,9 +71,11 @@ function addBookToLibrary(id, div){
     let title = window.prompt("Enter Title: ");
     let author = window.prompt("Enter author: ");
     let pages = window.prompt("Enter page numbers: ");
-        while(pages % 1 !== 0 && pages !== 'null'){
+    let pMod = pages % 1;
+        while(pages % 1 !== 0){
             alert('please enter a valid number');
             pages = window.prompt("Enter page numbers: ");
+            pMod = pages % 1;
         }
     let read = window.prompt("Have you read it?");
         while(read !== 'read' && read !== 'not read'){
@@ -84,4 +87,10 @@ function addBookToLibrary(id, div){
     myLibrary[spot] = book;
     makeBook(spot);
     setRemoveButton(div);
+}
+
+function removeBookFromLibrary(div){
+div.innerHTML = '';
+setNewBookButton(div);
+myLibrary[div.id] = '';
 }
